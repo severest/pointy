@@ -1,0 +1,16 @@
+$mui-primary-color: #cc0000;
+
+@import 'mui';
+
+html,
+body {
+  height: 100%;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 2;
+}

@@ -1,7 +1,21 @@
-<h1>Pointy</h1>
+<button class="mui-btn mui-btn--primary">New Game</button>
 
-<ul>
-<% @people.each do |person| %>
-  <li><% person.name %></li>
-<% end %>
-</ul>
+<table class="mui-table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Games</th>
+      <th>Wins</th>
+      <th>PPG</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @people.each do |person| %>
+      <tr>
+        <td><% person.name %></td>
+        <td><% person.person_games.count %></td>
+        <td></td>
+        <td></td>
+    <% end %>
+  </tbody>
+</table>
