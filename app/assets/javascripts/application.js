@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require mui
+//= require loaders
 //= require_tree .

@@ -1,6 +1,4 @@
-$mui-primary-color: #512da8;
-$mui-accent-color: #ac67c8;
-
+@import 'colours';
 @import 'mui';
 
 html,
@@ -14,4 +12,12 @@ header {
   right: 0;
   left: 0;
   z-index: 2;
+}
+
+.header--link a {
+  color: $mui-text-light;
+  &:hover {
+    color: darken($mui-text-light, 10);
+    text-decoration: none;
+  }
 }

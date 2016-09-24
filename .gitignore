@@ -21,3 +21,4 @@
 .byebug_history
 
 config/deploy/production.rb
+.DS_Store

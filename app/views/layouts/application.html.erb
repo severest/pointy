@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -18,7 +20,7 @@
       <div class="mui-container">
         <table width="100%">
           <tr class="mui--appbar-height">
-            <td class="mui--text-title">Pointy</td>
+            <td class="mui--text-title header--link"><%= link_to 'Pointy', root_url %></td>
           </tr>
         </table>
       </div>

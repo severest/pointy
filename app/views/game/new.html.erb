@@ -1,0 +1,46 @@
+<div class="mui-panel">
+  <div class="new-game__error" hidden>
+    <div class="mui--text-display1 mui--text-danger" id="message"></div>
+    <button class="mui-btn" id="retryBtn">Retry</button>
+  </div>
+
+  <div class="new-game__loader loader" hidden>
+    <div class="loader-inner pacman">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+
+  <div class="new-game__main-content">
+    <form>
+      <legend>Enter points</legend>
+
+      <div class="form-container">
+        <div class="game-group">
+          <div class="mui-textfield mui-textfield--float-label">
+            <input type="text" required id="name">
+            <label>Player</label>
+          </div>
+          <div class="mui-textfield mui-textfield--float-label">
+            <input type="text" required id="points">
+            <label>Points</label>
+          </div>
+
+          <div class="mui-checkbox">
+            <label>
+              <input type="checkbox" id="winner" class="winnerCheckbox">
+              Winner
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <button class="mui-btn mui-btn--flat mui-btn--primary" id="addPlayerBtn">Add Player</button>
+      <button type="submit" class="mui-btn mui-btn--accent mui-btn--raised" id="submitBtn">Submit</button>
+    </form>
+  </div>
+
+</div>

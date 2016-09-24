@@ -1,0 +1,14 @@
+@import 'colours';
+
+.loader {
+  width: 50px;
+  margin: 50px auto;
+}
+.pacman>div:first-of-type, .pacman>div:nth-child(2) {
+  border-top: 25px solid $mui-primary-color;
+  border-left: 25px solid $mui-primary-color;
+  border-bottom: 25px solid $mui-primary-color;
+}
+.pacman>div:nth-child(3), .pacman>div:nth-child(4), .pacman>div:nth-child(5), .pacman>div:nth-child(6) {
+  background-color: $mui-primary-color;
+}

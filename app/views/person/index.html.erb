@@ -1,21 +1,25 @@
-<button class="mui-btn mui-btn--accent">New Game</button>
+<div class="mui-panel">
 
-<table class="mui-table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Games</th>
-      <th>Wins</th>
-      <th>PPG</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @people.each do |person| %>
+  <a href="<%= url_for game_new_url %>" class="mui-btn mui-btn--accent">New Game</a>
+
+  <table class="mui-table">
+    <thead>
       <tr>
-        <td><% person.name %></td>
-        <td><% person.person_games.count %></td>
-        <td></td>
-        <td></td>
-    <% end %>
-  </tbody>
-</table>
+        <th>Name</th>
+        <th>Games</th>
+        <th>Wins</th>
+        <th>PPG</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @people.each do |person| %>
+        <tr>
+          <td><%= person.name %></td>
+          <td><%= person.games_played %></td>
+          <td><%= person.wins %></td>
+          <td><%= person.points_per_game %></td>
+      <% end %>
+    </tbody>
+  </table>
+
+</div>
