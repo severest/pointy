@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  person: one
+  points: 1
+  win: false
+
+two:
+  person: two
+  points: 1
+  win: false

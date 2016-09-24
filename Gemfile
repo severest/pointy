@@ -33,9 +33,6 @@ group :development, :test do
   gem 'capistrano', '~> 3.6'
   gem 'capistrano-rails', '~> 1.1'
   gem 'capistrano3-puma', '~> 1.2.1'
-end
-
-group :test do
   gem 'sqlite3'
 end
 
