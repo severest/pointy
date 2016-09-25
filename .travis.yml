@@ -4,7 +4,7 @@ addons:
         repo_token: 435c49a65f6c0f5ed67c45cfd60d36502c5f318c22b6468753421b8afa64b90a
 script:
 - bundle exec rake db:environment:set RAILS_ENV=test
-- bundle exec rake db:reset RAILS_ENV=test
-- bundle exec rake db:migrate RAILS_ENV=test
+- bundle exec rake db:drop RAILS_ENV=test
+- bundle exec rake db:setup RAILS_ENV=test
 - bundle exec rake
 cache: bundler
