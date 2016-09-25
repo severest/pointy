@@ -4,9 +4,13 @@ class GameController < ApplicationController
 
   def create
     game = game_params
-    @person = Person.find_or_create_by(name: game[:name])
-    @gameModel = @person.person_games.create!(points: game[:points], win: game[:winner])
+    ActiveRecord::Base.transaction do
+      @person = Person.find_or_create_by(name: game[:name])
+      @gameModel = @person.person_games.create!(points: game[:points], win: game[:winner])
+    end
     redirect_to root_url
+  rescue
+    render json: 'welp', status: :bad_request
   end
 
   private

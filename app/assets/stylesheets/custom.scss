@@ -6,6 +6,11 @@ body {
   height: 100%;
 }
 
+a:hover, a:focus {
+  color: $mui-accent-color;
+  text-decoration: none;
+}
+
 header {
   position: fixed;
   top: 0;

@@ -15,4 +15,5 @@
 //= require turbolinks
 //= require mui
 //= require loaders
+//= require sortable
 //= require_tree .

@@ -1,5 +1,6 @@
 class PersonGame < ApplicationRecord
   belongs_to :person
 
-  validates :points, numericality: { only_integer: true }
+  validates :points, numericality: { only_integer: true, :greater_than_or_equal_to => 0 }
+  validates :win, inclusion: { in: [ true, false ] }
 end
