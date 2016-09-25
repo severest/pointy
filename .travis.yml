@@ -5,6 +5,7 @@ addons:
 script:
 - bundle exec rake db:environment:set RAILS_ENV=test
 - bundle exec rake db:drop RAILS_ENV=test
-- bundle exec rake db:setup RAILS_ENV=test
+- bundle exec rake db:create RAILS_ENV=test
+- bundle exec rake db:migrate RAILS_ENV=test
 - bundle exec rake
 cache: bundler
