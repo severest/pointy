@@ -36,17 +36,21 @@ document.addEventListener("turbolinks:load", ->
 
     showLoader()
 
+    game =
+      game:
+        players: []
     for player in $('.game-group')
-      game =
-        game:
-          name: $(player).find('#name').val().trim()
-          points: $(player).find('#points').val().trim()
-          winner: $(player).find('#winner:checked').length isnt 0
-      $.post('create', game, (data) ->
-
-      ).fail(() ->
-        showError()
+      game.game.players.push(
+        name: $(player).find('#name').val().trim()
+        points: $(player).find('#points').val().trim()
+        winner: $(player).find('#winner:checked').length isnt 0
       )
+      
+    $.post('create', game, (data) ->
+
+    ).fail(() ->
+      showError()
+    )
     return false
   )
 
