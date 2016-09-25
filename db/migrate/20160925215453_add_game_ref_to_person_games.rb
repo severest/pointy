@@ -1,6 +1,5 @@
 class AddGameRefToPersonGames < ActiveRecord::Migration[5.0]
   def change
-    add_reference :person_games, :game
-    add_foreign_key :person_games, :game, on_delete: :cascade
+    add_reference :person_games, :game, foreign_key: true
   end
 end
