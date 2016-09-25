@@ -16,15 +16,15 @@ showLoader = () ->
   $('.new-game__loader').show()
 
 showError = (error = 'Uh oh!') ->
-    $('.new-game__main-content').hide()
-    $('.new-game__loader').hide()
-    $('.new-game__error').find('#message').html(error)
-    $('.new-game__error').show()
+  $('.new-game__main-content').hide()
+  $('.new-game__loader').hide()
+  $('.new-game__error').find('#message').html(error)
+  $('.new-game__error').show()
 
 showMain = () ->
-    $('.new-game__error').hide();
-    $('.new-game__loader').hide();
-    $('.new-game__main-content').show();
+  $('.new-game__error').hide()
+  $('.new-game__loader').hide()
+  $('.new-game__main-content').show()
 
 
 document.addEventListener("turbolinks:load", ->
