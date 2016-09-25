@@ -1,0 +1,4 @@
+language: ruby
+addons:
+    code_climate:
+        repo_token: 435c49a65f6c0f5ed67c45cfd60d36502c5f318c22b6468753421b8afa64b90a
