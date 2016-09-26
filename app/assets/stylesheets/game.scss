@@ -1,7 +1,25 @@
 .game-group {
   div {
-    display: inline-block;
-    width: 32%;
     margin-bottom: 10px;
+  }
+}
+
+.game__container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.game__panel {
+    width: 275px;
+}
+.game__header {
+  text-align: center;
+  &__title {
+    font-weight: bold;
+  }
+  &__winner {
+    i {
+      color: gold;
+    }
   }
 }

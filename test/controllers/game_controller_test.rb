@@ -7,7 +7,7 @@ class GameControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should post create" do
-    post game_create_url, params: { game: { players: {'0': { name: 'John', points: 6, winner: false }}}}
+    post game_create_url, params: { game: { players: {'0': { name: 'John', points: 6, winner: true }}}}
     assert_redirected_to root_url
   end
 

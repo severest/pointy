@@ -4,13 +4,16 @@ one:
   person: sammy
   points: 2
   win: false
+  game: one
 
 two:
   person: johnny
   points: 1
   win: true
-
+  game: two
+  
 three:
   person: johnny
   points: 3
-  win: false
+  win: true
+  game: one

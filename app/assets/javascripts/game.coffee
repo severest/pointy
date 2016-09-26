@@ -2,13 +2,12 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-# ensure only one winner box can be checked
-initWinnerChecks = () ->
-  $('.winnerCheckbox').click((evt) ->
-    for c in $('.winnerCheckbox')
-      $(c).attr('checked', false)
-    evt.currentTarget.checked = true
-  )
+addRow = () ->
+  # create duplicate of form row
+  row = $('.game-group-template').first().clone()
+  $(row).removeClass('game-group-template').addClass('game-group').show()
+  $('.form-container').append(row)
+
 
 showLoader = () ->
   $('.new-game__main-content').hide()
@@ -30,22 +29,25 @@ showMain = () ->
 document.addEventListener("turbolinks:load", ->
   $('#submitBtn').click((evt) ->
     evt.preventDefault()
-    if $('.winnerCheckbox:checked').length is 0
-      showError('Bro, you need to select a winner')
-      return false
-
     showLoader()
 
     game =
       game:
         players: []
-    for player in $('.game-group')
+    winningIndex = 0
+    winningPoints = 0
+    for player, index in $('.game-group')
+      points = parseInt($(player).find('#points').val().trim(), 10)
       game.game.players.push(
         name: $(player).find('#name').val().trim()
-        points: $(player).find('#points').val().trim()
-        winner: $(player).find('#winner:checked').length isnt 0
+        points: points
+        winner: false
       )
-      
+      if points > winningPoints
+        winningIndex = index
+        winningPoints = points
+    game.game.players[winningIndex].winner = true
+
     $.post('create', game, (data) ->
 
     ).fail(() ->
@@ -56,21 +58,12 @@ document.addEventListener("turbolinks:load", ->
 
   $('#addPlayerBtn').click((evt) ->
     evt.preventDefault()
-
-    # create duplicate of form row
-    row = $('.game-group').first().clone()
-    # values are blank
-    $(row).find('#winner').attr('checked', false)
-    $(row).find('#name').val('')
-    $(row).find('#points').val('')
-
-    $('.form-container').append(row)
-    initWinnerChecks()
+    addRow()
   )
 
   $('#retryBtn').click(() ->
     showMain()
   )
 
-  initWinnerChecks()
+  addRow()
 )
