@@ -1,28 +1,20 @@
-<div class="mui-panel">
-  <div class="mui--text-display1">
-    Totals
-    <a href="<%= url_for game_new_url %>" class="mui-btn mui-btn--accent mui--pull-right">
-      <%= fa_icon "plus", text: "Add points" %>
-    </a>
-  </div>
-
-
-  <table class="mui-table sortable" id="totals-table">
+<div class="leaderboard__container">
+  <table class="leaderboard__table" id="leaderboard__table">
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Games</th>
-        <th>Wins</th>
-        <th>PPG</th>
+        <th class="sort" data-sort="name">Name</th>
+        <th class="leaderboard__table__game sort" data-sort="games">Games</th>
+        <th class="sort" data-sort="wins">Wins</th>
+        <th class="sort" data-sort="ppg">PPG</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody class="list">
       <% @people.each do |person| %>
         <tr>
-          <td><%= person.name %></td>
-          <td><%= person.games_played %></td>
-          <td><%= person.wins %></td>
-          <td><%= person.points_per_game.round(2) %></td>
+          <td class="name"><%= person.name %></td>
+          <td class="leaderboard__table__game games"><%= person.games_played %></td>
+          <td class="wins"><%= person.wins %></td>
+          <td class="ppg"><%= person.points_per_game.round(2) %></td>
         </tr>
       <% end %>
     </tbody>
@@ -30,33 +22,32 @@
 </div>
 
 <div class="game__container">
-<% @games.each do |game| %>
-<div class="game__panel">
-  <div class="mui-panel">
-    <div class="game__header">
-      <div class="moment-format mui--text-caption mui--text-dark-hint">
-        <%= game.created_at.to_formatted_s(:iso8601) %>
-      </div>
-      <div class="game__header__title">
-        Winner
-      </div>
-      <div class="game__header__winner">
-        <i class="fa fa-trophy fa-4x"></i><span class="mui--text-display2"><%= game.winner %></span>
+  <% @games.each do |game| %>
+    <div class="game__panel">
+      <div class="mui-panel">
+        <div class="game__header">
+          <div class="moment-format mui--text-caption mui--text-dark-hint">
+            <%= game.created_at.to_formatted_s(:iso8601) %>
+          </div>
+          <div class="game__header__title">
+            Winner
+          </div>
+          <div class="game__header__winner">
+            <i class="fa fa-trophy fa-4x"></i><span class="mui--text-display2"><%= game.winner %></span>
+          </div>
+        </div>
+        <div class="game__content">
+          <table class="mui-table mui-table--bordered">
+            <tbody>
+            <% game.leaderboard.each do |person| %>
+              <tr>
+                <td><%= person.person.name %> scored <%= person.points.to_s %></td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
-    <div class="game__content">
-      <table class="mui-table mui-table--bordered">
-        <tbody>
-        <% game.leaderboard.each do |person| %>
-          <tr>
-            <td><%= person.person.name %></td>
-            <td><%= person.points.to_s %></td>
-          </tr>
-        <% end %>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
-<% end %>
+  <% end %>
 </div>

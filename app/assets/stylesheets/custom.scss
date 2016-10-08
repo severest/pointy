@@ -1,9 +1,11 @@
 @import 'colours';
 @import 'mui';
 
+@import 'https://fonts.googleapis.com/css?family=Cabin';
+
 html,
 body {
-  height: 100%;
+  font-family: 'Cabin', sans-serif;
 }
 
 a:hover, a:focus {

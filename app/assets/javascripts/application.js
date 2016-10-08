@@ -15,7 +15,7 @@
 //= require turbolinks
 //= require mui
 //= require loaders
-//= require sortable
+//= require list
 //= require moment
 //= require_tree .
 

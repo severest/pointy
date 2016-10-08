@@ -17,19 +17,23 @@
 
   <body>
     <header class="mui-appbar mui--z1">
-      <div class="mui-container">
+      <div class="mui-container-fluid">
         <table width="100%">
           <tr class="mui--appbar-height">
             <td class="mui--text-title header--link"><%= link_to 'Pointy', root_url %></td>
+            <td>
+              <a href="<%= url_for game_new_url %>" class="mui-btn mui-btn--accent mui--pull-right">
+                <%= fa_icon "plus", text: "Add points" %>
+              </a>
+            </td>
           </tr>
         </table>
       </div>
     </header>
 
-    <div class="mui-container">
-      <div class="mui--appbar-height"></div>
-      <%= yield %>
-    </div>
+
+    <div class="mui--appbar-height"></div>
+    <%= yield %>
 
   </body>
 </html>
