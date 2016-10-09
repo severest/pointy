@@ -1,7 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
+baseball:
+  id: 1
+  name: Baseball
 
-two:
-  name: MyString
+hockey:
+  id: 2
+  name: Hockey jojos
