@@ -17,7 +17,14 @@
   <div class="new-game__main-content">
     <form>
       <legend>Enter points</legend>
-
+      <div class="mui-select">
+        <select id="type">
+          <% @game_types.each do |type| %>
+            <option value="<%= type.id %>"><%= type.name %></option>
+          <% end %>
+        </select>
+        <label>Game type</label>
+      </div>
       <div class="form-container">
       </div>
 

@@ -33,6 +33,7 @@ document.addEventListener("turbolinks:load", ->
 
     game =
       game:
+        game_type_id: $('#type').val()
         players: []
     winningIndex = 0
     winningPoints = 0

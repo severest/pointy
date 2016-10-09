@@ -1,10 +1,11 @@
 class GameController < ApplicationController
   def new
+    @game_types = GameType.all()
   end
 
   def create
     ActiveRecord::Base.transaction do
-      @game = Game.create!
+      @game = Game.create!(game_type_id: game_params[:game_type_id])
       game_params[:players].each do |index, player|
         @person = Person.find_or_create_by(name: player[:name])
         @gameModel = @person.person_games.create!(
@@ -21,6 +22,6 @@ class GameController < ApplicationController
 
   private
     def game_params
-      params.require(:game).permit(:code, players: [ :name, :points, :winner ])
+      params.require(:game).permit(:game_type_id, players: [ :name, :points, :winner ])
     end
 end

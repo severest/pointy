@@ -5,6 +5,12 @@
   float: left;
 }
 
+.leaderboard__title {
+  background-color: $mui-accent-color;
+  color: lighten($mui-accent-color, 30%);
+  padding: 10px 30px;
+  font-size: 16px;
+}
 
 .leaderboard__table {
   font-size: 22px;
