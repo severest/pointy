@@ -1,7 +1,7 @@
 <div class="leaderboard__container">
-  <% @leaderboards.each do |board| %>
+  <% @leaderboards.each_with_index do |board, index| %>
     <div class="leaderboard__title"><%= board[:game] %></div>
-    <table class="leaderboard__table" id="leaderboard__table">
+    <table class="leaderboard__table" id="leaderboard__table_<%= index %>">
       <thead>
         <tr>
           <th class="sort" data-sort="name">Name</th>
@@ -14,9 +14,9 @@
         <% board[:people].each do |person| %>
           <tr>
             <td class="name"><%= person.name %></td>
-            <td class="leaderboard__table__game games"><%= person.games_played %></td>
-            <td class="wins"><%= person.wins %></td>
-            <td class="ppg"><%= person.points_per_game.round(2) %></td>
+            <td class="leaderboard__table__game games"><%= person.games_played(board[:game_type_id]) %></td>
+            <td class="wins"><%= person.wins(board[:game_type_id]) %></td>
+            <td class="ppg"><%= person.points_per_game(board[:game_type_id]).round(2) %></td>
           </tr>
         <% end %>
       </tbody>

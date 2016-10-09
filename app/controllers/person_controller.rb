@@ -5,6 +5,7 @@ class PersonController < ApplicationController
       people = Person.includes(person_games: [game: [:game_type]]).where('game_types.name': t.name)
       @leaderboards.push({
           :game => t.name,
+          :game_type_id => t.id,
           :people => people
       })
     end
