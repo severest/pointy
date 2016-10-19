@@ -1,0 +1,13 @@
+@import 'colours';
+
+.autocomplete-suggestions {
+  background: white;
+}
+
+.autocomplete-suggestion {
+    padding: 5px;
+    &:hover {
+      color: white;
+      background-color: $mui-primary-color;
+    }
+}

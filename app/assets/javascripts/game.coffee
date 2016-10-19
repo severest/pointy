@@ -7,6 +7,11 @@ addRow = () ->
   row = $('.game-group-template').first().clone()
   $(row).removeClass('game-group-template').addClass('game-group').show()
   $('.form-container').append(row)
+  $(row).find('#name').autocomplete(
+    serviceUrl: '/people',
+    onSelect: (suggestion) ->
+      alert('You selected: ' + suggestion.value + ', ' + suggestion.data)
+  )
 
 
 showLoader = () ->
@@ -49,11 +54,15 @@ document.addEventListener("turbolinks:load", ->
         winningPoints = points
     game.game.players[winningIndex].winner = true
 
-    $.post('create', game, (data) ->
+    if game.game.players.length > 1
+      $.post('create', game, (data) ->
 
-    ).fail(() ->
+      ).fail(() ->
+        showError()
+      )
+    else
       showError()
-    )
+
     return false
   )
 

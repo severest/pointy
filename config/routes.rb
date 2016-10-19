@@ -3,4 +3,5 @@ Rails.application.routes.draw do
 
   get 'game/new'
   post 'game/create'
+  get 'people', to: 'person#list'
 end

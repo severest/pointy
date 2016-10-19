@@ -12,4 +12,9 @@ class PersonController < ApplicationController
     end
     @games = Game.all().order(created_at: :desc).limit(50)
   end
+
+  def list
+    @people = Person.where("name LIKE ?", "%#{params[:query]}%")
+    render json: { suggestions: @people.pluck(:name).to_a }
+  end
 end

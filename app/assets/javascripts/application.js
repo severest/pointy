@@ -17,6 +17,7 @@
 //= require loaders
 //= require list
 //= require moment
+//= require jquery.autocomplete
 //= require_tree .
 
 document.addEventListener("turbolinks:load", function() {
