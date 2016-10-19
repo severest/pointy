@@ -9,8 +9,6 @@ addRow = () ->
   $('.form-container').append(row)
   $(row).find('#name').autocomplete(
     serviceUrl: '/people',
-    onSelect: (suggestion) ->
-      alert('You selected: ' + suggestion.value + ', ' + suggestion.data)
   )
 
 
