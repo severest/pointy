@@ -1,16 +1,14 @@
 @import 'colours';
 @import 'mui';
-
-@import 'https://fonts.googleapis.com/css?family=Cabin';
-@import 'https://fonts.googleapis.com/css?family=Abel';
+@import 'mixins';
 
 html,
 body {
-  font-family: 'Cabin', sans-serif;
+  @include main-font;
 }
 
 th {
-  font-family: 'Abel', sans-serif;
+  @include secondary-font;
 }
 
 a:hover, a:focus {

@@ -1,11 +1,27 @@
 class LeaderboardController < ApplicationController
 
   def index
-    @season = Season.get_current()
+    if params[:season].present?
+      if params[:season] == 'all'
+        @season = nil
+      else
+        begin
+          @season = Season.get_current(Time.parse(params[:season]))
+        rescue
+          @season = nil
+        end
+      end
+    else
+      @season = Season.get_current()
+    end
 
     @leaderboards = []
     GameType.all().each do |game_type|
-      people = Person.includes(person_games: [game: [:game_type]]).where('game_types.name': game_type.name, 'games.created_at': @season[:start]..@season[:finish])
+      if @season.present?
+        people = Person.includes(person_games: [game: [:game_type]]).where('game_types.name': game_type.name, 'games.created_at': @season[:start]..@season[:finish])
+      else
+        people = Person.includes(person_games: [game: [:game_type]]).where('game_types.name': game_type.name)
+      end
       sorted_people = people.sort_by{ |person| [person.wins(game_type.id, @season), person.points_per_game(game_type.id, @season)] }
       @leaderboards.push({
           :game => game_type.name,
@@ -14,7 +30,11 @@ class LeaderboardController < ApplicationController
       })
     end
 
-    @games = Game.where(created_at: @season[:start]..@season[:finish]).order(created_at: :desc).limit(50)
+    if @season.present?
+      @games = Game.where(created_at: @season[:start]..@season[:finish]).order(created_at: :desc).limit(50)
+    else
+      @games = Game.all().order(created_at: :desc).limit(50)
+    end
   end
 
 end

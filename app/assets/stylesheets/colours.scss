@@ -3,7 +3,9 @@ $mui-accent-color: #8C489F;
 $mui-accent-color-light: lighten($mui-accent-color, 15);
 $mui-danger-color: red;
 
-$mui-body-bg-color: #757575;
+$grey: #757575;
+$lighterGrey: lighten($grey, 15%);
+$mui-body-bg-color: $grey;
 $mui-panel-bg-color: #F1F0FF;
 
 $mui-base-font-color: white;

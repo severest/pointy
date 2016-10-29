@@ -1,8 +1,22 @@
 <% content_for :season do %>
-  <td class="mui--appbar-height mui--appbar-min-height season__container">
-    <i class="fa fa-calendar"></i> Season:
+  <% if @season.present? %>
+    <a href="<%= url_for root_url :params => {season: @season[:start].advance(days: -1).strftime("%Y-%m-%d")} %>" class="mui-btn mui-btn--accent season-btn">
+      <%= fa_icon "chevron-left" %>
+    </a>
+    <i class="fa fa-calendar"></i>
     <%= @season[:start].strftime("%b.") + ' to ' + @season[:finish].strftime("%b. %Y") %>
-  </td>
+    <a href="<%= url_for root_url :params => {season: @season[:finish].advance(days: 1).strftime("%Y-%m-%d")} %>" class="mui-btn mui-btn--accent season-btn">
+      <%= fa_icon "chevron-right" %>
+    </a>
+    <a href="/?season=all" class="mui-btn mui-btn--accent season-btn">
+      All time
+    </a>
+  <% else %>
+    <i class="fa fa-calendar"></i> All time
+    <a href="<%= url_for root_url %>" class="mui-btn mui-btn--accent season-btn">
+      Go to current
+    </a>
+  <% end %>
 <% end %>
 
 <div class="leaderboard__container">

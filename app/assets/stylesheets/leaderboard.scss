@@ -60,7 +60,7 @@
 
 .hidden__container {
     text-align: center;
-    background-color: lighten($mui-body-bg-color, 15%);
+    background-color: $lighterGrey;
     width: 200px;
     padding: 8px;
     margin: 8px auto;

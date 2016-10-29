@@ -1,3 +1,18 @@
+@import 'mixins';
+@import 'colours';
+
 .season__container {
-  font-family: 'Abel', sans-serif;
+  @include secondary-font;
+}
+.season__container--mobile {
+  background-color: $lighterGrey;
+  text-align: center;
+}
+
+.season-btn {
+  @include main-font;
+  padding: 8px;
+  height: 25px;
+  font-size: 12px;
+  line-height: 9px;
 }

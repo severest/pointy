@@ -1,0 +1,10 @@
+@import 'https://fonts.googleapis.com/css?family=Cabin';
+@import 'https://fonts.googleapis.com/css?family=Abel';
+
+@mixin main-font() {
+  font-family: 'Cabin', sans-serif;
+}
+
+@mixin secondary-font() {
+  font-family: 'Abel', sans-serif;
+}
