@@ -1,0 +1,26 @@
+<div class="game__panel">
+  <div class="mui-panel">
+
+    <div class="game__header">
+      <div class="mui--text-caption mui--text-dark-hint">
+        <span class="moment-format"><%= game.created_at.to_formatted_s(:iso8601) %></span> a game of <%= game.game_type.name %> was played
+      </div>
+      <div class="game__header__title">
+        Winner
+      </div>
+      <div class="game__header__winner">
+        <i class="fa fa-trophy fa-4x"></i><span class="mui--text-display2"><%= game.winner %></span>
+      </div>
+    </div>
+
+    <div class="game__content">
+      <% game.leaderboard.each do |person| %>
+        <div class="game__score">
+          <%= person.person.name %>
+          <span class="game__score__tally"><%= person.points.to_s %></span>
+        </div>
+      <% end %>
+    </div>
+
+  </div>
+</div>

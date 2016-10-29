@@ -1,3 +1,5 @@
+@import 'colours';
+
 .game-group {
   div {
     margin-bottom: 10px;
@@ -32,4 +34,20 @@
 .game__content {
   font-size: 18px;
   text-align: center;
+}
+
+.game__score {
+    display: inline-block;
+    border: 1px solid $mui-primary-color;
+    // color: white;
+    padding: 5px 10px;
+    margin: 8px 3px;
+    border-radius: 3px;
+    font-size: 15px;
+}
+.game__score__tally {
+  padding: 3px 10px;
+  border-radius: 8px;
+  background-color: $mui-primary-color;
+  color: white;
 }

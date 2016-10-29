@@ -1,0 +1,79 @@
+@import 'colours';
+
+.leaderboard__container {
+  width: 60%;
+  float: left;
+}
+
+.leaderboard__title {
+  background-color: $mui-accent-color;
+  color: lighten($mui-accent-color, 30%);
+  padding: 10px 16px;
+  font-size: 16px;
+}
+
+.leaderboard__table {
+  font-size: 22px;
+  width: 100%;
+  thead {
+    tr {
+      border-bottom: 1px solid #ccc;
+      th:hover {
+        color: lighten($mui-accent-color, 30%);
+        cursor: pointer;
+      }
+      .medal-header:hover {
+        cursor: default;
+      }
+    }
+  }
+  td, th {
+    padding: 10px;
+  }
+}
+
+
+.medal-cell{
+  width: 60px;
+}
+.gold-medal {
+  color: $gold;
+}
+.silver-medal {
+  color: $silver;
+}
+.bronze-medal {
+  color: $bronze;
+}
+.gold-row {
+  background-color: lighten($gold, 23%);
+  color: darken($gold, 15%);
+}
+.silver-row {
+  background-color: lighten($silver, 10%);
+  color: darken($silver, 15%);
+}
+.bronze-row {
+  background-color: lighten($bronze, 15%);
+  color: darken($bronze, 15%);
+}
+
+.hidden__container {
+    text-align: center;
+    background-color: lighten($mui-body-bg-color, 15%);
+    width: 200px;
+    padding: 8px;
+    margin: 8px auto;
+    border-radius: 3px;
+    font-size: 12px;
+}
+
+@media all and (max-width: 900px) {
+  .leaderboard__container {
+    width: 100%;
+    float: none;
+  }
+  .leaderboard__table__game {
+    display: none;
+  }
+}

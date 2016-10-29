@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'person#index'
+  root 'leaderboard#index'
 
   get 'game/new'
   post 'game/create'

@@ -18,15 +18,10 @@ showLoader = () ->
   $('.new-game__loader').show()
 
 showError = (error = 'Uh oh!') ->
-  $('.new-game__main-content').hide()
+  $('.new-game__main-content').show()
   $('.new-game__loader').hide()
   $('.new-game__error').find('#message').html(error)
   $('.new-game__error').show()
-
-showMain = () ->
-  $('.new-game__error').hide()
-  $('.new-game__loader').hide()
-  $('.new-game__main-content').show()
 
 
 document.addEventListener("turbolinks:load", ->
@@ -52,14 +47,16 @@ document.addEventListener("turbolinks:load", ->
         winningPoints = points
     game.game.players[winningIndex].winner = true
 
-    if game.game.players.length > 1
+    if $('#type').val() is ''
+      showError('You must choose a game type.')
+    else if game.game.players.length > 1
       $.post('create', game, (data) ->
 
       ).fail(() ->
-        showError()
+        showError('Oops! Cannot save the game.')
       )
     else
-      showError()
+      showError('You must enter at least two players.')
 
     return false
   )
@@ -67,10 +64,6 @@ document.addEventListener("turbolinks:load", ->
   $('#addPlayerBtn').click((evt) ->
     evt.preventDefault()
     addRow()
-  )
-
-  $('#retryBtn').click(() ->
-    showMain()
   )
 
   addRow()

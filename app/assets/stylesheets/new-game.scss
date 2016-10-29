@@ -1,0 +1,9 @@
+@import 'colours';
+
+.new-game__error {
+    margin: 14px;
+    font-size: 17px;
+    background-color: lighten($mui-danger-color, 40%);
+    padding: 10px;
+    border-radius: 5px;
+}

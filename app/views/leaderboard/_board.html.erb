@@ -1,0 +1,39 @@
+<div class="leaderboard__title"><%= board[:game] %></div>
+<table class="leaderboard__table" id="leaderboard__table_<%= index %>">
+  <thead>
+    <tr>
+      <th class="medal-header"></th>
+      <th class="sort" data-sort="name">Name</th>
+      <th class="leaderboard__table__game sort" data-sort="games">Games</th>
+      <th class="sort" data-sort="wins">Wins</th>
+      <th class="sort" data-sort="ppg">PPG</th>
+    </tr>
+  </thead>
+  <tbody class="list">
+    <% board[:people].each_with_index do |person, index| %>
+    <% medalClasses = ['gold', 'silver', 'bronze'] %>
+      <% if index < 3 %>
+        <tr class="<%= medalClasses[index] %>-row">
+      <% else %>
+        <tr>
+      <% end %>
+        <td class="medal-cell">
+          <% if index < 3 %>
+            <span class="fa-stack <%= medalClasses[index] %>-medal">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-star fa-stack-1x fa-inverse"></i>
+            </span>
+          <% end %>
+        </td>
+        <td class="name"><%= person.name %></td>
+        <td class="leaderboard__table__game games"><%= person.games_played(board[:game_type_id], @season) %></td>
+        <td class="wins"><%= person.wins(board[:game_type_id], @season) %></td>
+        <td class="ppg"><%= person.points_per_game(board[:game_type_id], @season).round(2) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<div id="leaderboard__table_<%= index %>__hidden" class="hidden__container" hidden>
+  <span class="hidden__message"></span>
+  <a href="#" class="hidden__show-all">Show all</a>
+</div>

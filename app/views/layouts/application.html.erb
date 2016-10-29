@@ -21,6 +21,7 @@
         <table width="100%">
           <tr class="mui--appbar-height">
             <td class="mui--text-title header--link"><%= link_to 'Pointy', root_url %></td>
+            <%= yield :season %>
             <td>
               <a href="<%= url_for game_new_url %>" class="mui-btn mui-btn--accent mui--pull-right">
                 <%= fa_icon "plus", text: "Add points" %>

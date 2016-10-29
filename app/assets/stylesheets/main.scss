@@ -2,10 +2,15 @@
 @import 'mui';
 
 @import 'https://fonts.googleapis.com/css?family=Cabin';
+@import 'https://fonts.googleapis.com/css?family=Abel';
 
 html,
 body {
   font-family: 'Cabin', sans-serif;
+}
+
+th {
+  font-family: 'Abel', sans-serif;
 }
 
 a:hover, a:focus {
@@ -21,10 +26,22 @@ header {
   z-index: 2;
 }
 
+.mui--text-title {
+  width: 90px;
+}
+
 .header--link a {
   color: $mui-text-light;
   &:hover {
     color: darken($mui-text-light, 10);
     text-decoration: none;
   }
+}
+
+.mui-panel,
+legend,
+label,
+.mui-select > select,
+.mui-textfield > input {
+  color: $mui-body-bg-color;
 }

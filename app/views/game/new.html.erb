@@ -1,8 +1,5 @@
 <div class="mui-panel">
-  <div class="new-game__error" hidden>
-    <div class="mui--text-display1 mui--text-danger" id="message"></div>
-    <button class="mui-btn" id="retryBtn">Retry</button>
-  </div>
+
 
   <div class="new-game__loader loader" hidden>
     <div class="loader-inner pacman">
@@ -14,11 +11,12 @@
     </div>
   </div>
 
-  <div class="new-game__main-content">
+  <div class="new-game__main-content mui-col-md-6 mui-col-md-offset-3">
     <form>
       <legend>Enter points</legend>
       <div class="mui-select">
         <select id="type">
+          <option value="">Select one...</option>
           <% @game_types.each do |type| %>
             <option value="<%= type.id %>"><%= type.name %></option>
           <% end %>
@@ -26,6 +24,13 @@
         <label>Game type</label>
       </div>
       <div class="form-container">
+      </div>
+
+      <div class="new-game__error" hidden>
+        <div class="mui--text-danger">
+          <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+          <span id="message">jojo</span>
+        </div>
       </div>
 
       <button class="mui-btn mui-btn--flat mui-btn--primary" id="addPlayerBtn">Add Player</button>

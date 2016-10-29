@@ -1,0 +1,18 @@
+<% content_for :season do %>
+  <td class="mui--appbar-height mui--appbar-min-height season__container">
+    <i class="fa fa-calendar"></i> Season:
+    <%= @season[:start].strftime("%b.") + ' to ' + @season[:finish].strftime("%b. %Y") %>
+  </td>
+<% end %>
+
+<div class="leaderboard__container">
+  <% @leaderboards.each_with_index do |board, index| %>
+    <%= render partial: "board", locals: {board: board, index: index} %>
+  <% end %>
+</div>
+
+<div class="game__container">
+  <% @games.each do |game| %>
+    <%= render partial: "game_panel", locals: {game: game} %>
+  <% end %>
+</div>
