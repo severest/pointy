@@ -19,14 +19,23 @@
   <% end %>
 <% end %>
 
-<div class="leaderboard__container">
-  <% @leaderboards.each_with_index do |board, index| %>
-    <%= render partial: "board", locals: {board: board, index: index} %>
-  <% end %>
-</div>
+<% if @games.empty? %>
+  <div class="empty__container">
+    <i class="fa fa-frown-o fa-5x" aria-hidden="true"></i>
+    <p>Welp, you need to play some games.</p>
+  </div>
+<% else %>
+  <div class="leaderboard__container">
+    <% @leaderboards.each_with_index do |board, index| %>
+      <% if !board[:people].empty? %>
+        <%= render partial: "board", locals: {board: board, index: index} %>
+      <% end %>
+    <% end %>
+  </div>
 
-<div class="game__container">
-  <% @games.each do |game| %>
-    <%= render partial: "game_panel", locals: {game: game} %>
-  <% end %>
-</div>
+  <div class="game__container">
+    <% @games.each do |game| %>
+      <%= render partial: "game_panel", locals: {game: game} %>
+    <% end %>
+  </div>
+<% end %>
