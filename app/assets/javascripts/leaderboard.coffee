@@ -13,7 +13,9 @@ hideRows = (table) ->
     )
     if hiddenCount > 0
       $(hiddenContainer).show()
-      $(hiddenContainer).find('.hidden__message').html("+ #{hiddenCount} hidden players")
+      $(hiddenContainer)
+        .find('.hidden__message')
+        .html("+ #{hiddenCount} hidden players")
       $(hiddenContainer).find('.hidden__show-all').click((e) ->
         e.preventDefault()
         $(hiddenContainer).hide()

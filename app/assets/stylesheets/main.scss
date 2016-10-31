@@ -43,3 +43,7 @@ label,
 .mui-textfield > input {
   color: $mui-body-bg-color;
 }
+
+.turbolinks-progress-bar {
+  background-color: lighten($mui-accent-color, 20%) !important;
+}

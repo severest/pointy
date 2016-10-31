@@ -9,7 +9,7 @@ class GameController < ApplicationController
 
       player_names = Array.new
       @game = Game.create!(game_type_id: game_params[:game_type_id])
-      game_params[:players].each do |index, player|
+      game_params[:players].each do |_index, player|
         @person = Person.find_or_create_by(name: player[:name])
 
         raise 'duplicate player' if player_names.include?(player[:name])

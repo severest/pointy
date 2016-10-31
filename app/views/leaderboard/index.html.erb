@@ -34,6 +34,9 @@
   </div>
 
   <div class="game__container">
+    <div class="stats__container mui--hidden-sm mui--hidden-xs">
+      <div id="random-fact" class="font-effect-3d"></div>
+    </div>
     <% @games.each do |game| %>
       <%= render partial: "game_panel", locals: {game: game} %>
     <% end %>

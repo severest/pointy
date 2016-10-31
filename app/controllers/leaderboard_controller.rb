@@ -1,19 +1,7 @@
 class LeaderboardController < ApplicationController
 
   def index
-    if params[:season].present?
-      if params[:season] == 'all'
-        @season = nil
-      else
-        begin
-          @season = Season.get_current(Time.parse(params[:season]))
-        rescue
-          @season = nil
-        end
-      end
-    else
-      @season = Season.get_current()
-    end
+    @season = get_season
 
     @leaderboards = []
     GameType.all().each do |game_type|
@@ -35,6 +23,25 @@ class LeaderboardController < ApplicationController
     else
       @games = Game.all().order(created_at: :desc).limit(50)
     end
+  end
+
+  private
+
+  def get_season
+    if params[:season].present?
+      if params[:season] == 'all'
+        season = nil
+      else
+        begin
+          season = Season.get_current(Time.parse(params[:season]))
+        rescue
+          season = nil
+        end
+      end
+    else
+      season = Season.get_current()
+    end
+    season
   end
 
 end

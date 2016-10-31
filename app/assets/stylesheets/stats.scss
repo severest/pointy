@@ -1,0 +1,12 @@
+@import 'colours';
+
+.stats__container {
+  background-color: $lighterGrey;
+  padding: 10px;
+  text-align: center;
+  font-size: 20px;
+
+  #random-fact {
+    position: relative;
+  }
+}
