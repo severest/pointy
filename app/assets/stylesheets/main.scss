@@ -5,6 +5,7 @@
 html,
 body {
   @include main-font;
+  overflow-x: hidden;
 }
 
 th {
