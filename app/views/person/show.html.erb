@@ -61,11 +61,6 @@ function getGamesPlayedThisSeason() {
   ];
 }
 
-Chart.scaleService.updateScaleDefaults('radialLinear', {
-    ticks: {
-        stepSize: 1
-    }
-});
 Chart.defaults.global.defaultFontColor = '#fff';
 Chart.defaults.global.defaultFontFamily = "'Cabin', sans-serif";
 Chart.defaults.global.defaultFontSize = 15;
@@ -96,6 +91,15 @@ var data = {
 };
 var myRadarChart = new Chart("myChart", {
     type: 'radar',
-    data: data
+    data: data,
+    options: {
+      responsive: true,
+      scale: {
+        ticks: {
+          display: false,
+          stepSize: 1
+        }
+      }
+    }
 });
 </script>
