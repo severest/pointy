@@ -25,6 +25,8 @@
 document.addEventListener("turbolinks:load", function() {
   $('.moment-format').each(function(index, elem) {
     m = moment($(elem).html());
-    $(elem).html(m.fromNow());
+    if (m.isValid()) {
+      $(elem).html(m.fromNow());
+    }
   });
 })
