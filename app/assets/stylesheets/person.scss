@@ -1,0 +1,49 @@
+@import 'colours';
+
+.person-details__container {
+  display: flex;
+  justify-content: center;
+}
+
+.person-details__left {
+  width: 20%;
+}
+
+.person-details__right {
+  width: 50%;
+  background-color: $lighterGrey;
+}
+
+.person-details__title {
+  font-size: 35px;
+  text-align: center;
+  margin-top: 20px;
+  &__text {
+    display: inline-block;
+    position: relative;
+    top: 3px;
+  }
+  .fa-lg {
+    font-size: 25px;
+  }
+}
+
+.person-details__stats {
+  &__wins {
+    padding: 20px;
+    text-align: center;
+    font-size: 25px;
+    background-color: $mui-accent-color-light;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+  }
+
+  &__item__tally__number {
+    font-size: 45px;
+  }
+}

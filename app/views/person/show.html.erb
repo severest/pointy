@@ -1,0 +1,101 @@
+<div class="person-details__container">
+  <div class="person-details__left">
+
+      <div class="person-details__title">
+        <span class="fa-stack fa-lg">
+          <i class="fa fa-circle-o fa-stack-2x"></i>
+          <i class="fa fa-user fa-stack-1x"></i>
+        </span>
+        <div class="person-details__title__text">
+          <%= @person.name %>
+        </div>
+      </div>
+
+  </div>
+
+  <div class="person-details__right">
+    <div class="person-details__stats">
+      <div class="person-details__stats__wins">
+        <span class="person-details__stats__wins__tally">
+          <%= @person.total_wins() %>
+        </span>
+        total wins
+      </div>
+      <div class="person-details__stats__item">
+        <div class="person-details__stats__item__tally">
+          <div class="person-details__stats__item__tally__number">
+            <%= @person.games_played(@current_season) %>
+          </div>
+          <div class="person-details__stats__item__tally__text">
+            games played
+          </div>
+        </div>
+        <div class="person-details__stats__item__graph">
+          <canvas id="myChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+var gameTypes = <%= raw @game_types.to_json %>;
+function getGameTypes() {
+  return _.map(gameTypes, function(g) {
+    return g.name;
+  });
+}
+
+function getGamesPlayed() {
+  return [
+    <% @game_types.each do |g| %>
+      <%= @person.games_played_by_game_type(g.id) %>,
+    <% end %>
+  ];
+}
+function getGamesPlayedThisSeason() {
+  return [
+    <% @game_types.each do |g| %>
+      <%= @person.games_played_by_game_type(g.id, @current_season) %>,
+    <% end %>
+  ];
+}
+
+Chart.scaleService.updateScaleDefaults('radialLinear', {
+    ticks: {
+        stepSize: 1
+    }
+});
+Chart.defaults.global.defaultFontColor = '#fff';
+Chart.defaults.global.defaultFontFamily = "'Cabin', sans-serif";
+Chart.defaults.global.defaultFontSize = 15;
+var data = {
+    labels: getGameTypes(),
+    datasets: [
+        {
+            label: "All-time",
+            backgroundColor: "rgba(140,72,159,0.2)",
+            borderColor: "rgba(140,72,159,1)",
+            pointBackgroundColor: "rgba(140,72,159,1)",
+            pointBorderColor: "#fff",
+            pointHoverBackgroundColor: "#fff",
+            pointHoverBorderColor: "rgba(140,72,159,1)",
+            data: getGamesPlayed()
+        },
+        {
+            label: "This season",
+            backgroundColor: "rgba(226,124,255,0.2)",
+            borderColor: "rgba(226,124,255,1)",
+            pointBackgroundColor: "rgba(226,124,255,1)",
+            pointBorderColor: "#fff",
+            pointHoverBackgroundColor: "#fff",
+            pointHoverBorderColor: "rgba(226,124,255,1)",
+            data: getGamesPlayedThisSeason()
+        }
+    ]
+};
+var myRadarChart = new Chart("myChart", {
+    type: 'radar',
+    data: data
+});
+</script>

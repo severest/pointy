@@ -18,6 +18,8 @@
 //= require list
 //= require moment
 //= require jquery.autocomplete
+//= require Chart.2.4.0
+//= require lodash.4.17.2
 //= require_tree .
 
 document.addEventListener("turbolinks:load", function() {

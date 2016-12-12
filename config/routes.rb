@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   scope 'stats' do
     get 'fact', to: 'stats#fact'
   end
+
+  get '/u/:id', to: 'person#show', as: 'person'
 end

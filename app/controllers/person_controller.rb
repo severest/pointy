@@ -1,4 +1,6 @@
 class PersonController < ApplicationController
+  before_action :get_season, only: [:show]
+
   def index
     @leaderboards = []
     GameType.all().each do |game_type|
@@ -16,5 +18,10 @@ class PersonController < ApplicationController
   def list
     @people = Person.where("name LIKE ?", "%#{params[:query]}%")
     render json: { suggestions: @people.pluck(:name).to_a }
+  end
+
+  def show
+    @person = Person.friendly.find(params[:id])
+    @game_types = GameType.all()
   end
 end

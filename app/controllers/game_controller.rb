@@ -28,7 +28,8 @@ class GameController < ApplicationController
   end
 
   private
-    def game_params
-      params.require(:game).permit(:game_type_id, players: [ :name, :points, :winner ])
-    end
+  
+  def game_params
+    params.require(:game).permit(:game_type_id, players: [ :name, :points, :winner ])
+  end
 end
