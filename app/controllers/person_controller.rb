@@ -21,6 +21,13 @@ class PersonController < ApplicationController
   end
 
   def show
+    @seasons = []
+    @seasons.push(@current_season)
+    @seasons.unshift(Season.get_current(@current_season[:start].prev_quarter))
+    @seasons.unshift(Season.get_current(@seasons[0][:start].prev_quarter))
+    @seasons.push(Season.get_current(@current_season[:start].next_quarter))
+    @seasons.push(Season.get_current(@seasons[3][:start].next_quarter))
+    
     @person = Person.friendly.find(params[:id])
     @game_types = GameType.all()
   end

@@ -9,31 +9,41 @@
         <div class="person-details__title__text">
           <%= @person.name %>
         </div>
+
+        <div class="person-details__stats__item person-details__stats__item--wins">
+          <%= pluralize(@person.total_wins(), 'win') %>
+        </div>
+
+        <div class="person-details__stats__item">
+          <%= pluralize(@person.games_played(), 'game') %> played
+        </div>
       </div>
 
   </div>
 
   <div class="person-details__right">
-    <div class="person-details__stats">
-      <div class="person-details__stats__wins">
-        <span class="person-details__stats__wins__tally">
-          <%= @person.total_wins() %>
-        </span>
-        total wins
+    <div class="person-details__graphs">
+
+      <div class="person-details__graphs__colour--all" hidden></div>
+      <div class="person-details__graphs__colour--all-alt" hidden></div>
+      <div class="person-details__graphs__colour--season" hidden></div>
+      <div class="person-details__graphs__colour--season-alt" hidden></div>
+      <div class="person-details__graphs__legend">
+        <div class="person-details__graphs__legend__item person-details__graphs__legend__item--all">All-time</div>
+        <div class="person-details__graphs__legend__item person-details__graphs__legend__item--season">This season</div>
       </div>
-      <div class="person-details__stats__item">
-        <div class="person-details__stats__item__tally">
-          <div class="person-details__stats__item__tally__number">
-            <%= @person.games_played(@current_season) %>
-          </div>
-          <div class="person-details__stats__item__tally__text">
-            games played
-          </div>
-        </div>
-        <div class="person-details__stats__item__graph">
-          <canvas id="myChart"></canvas>
+
+      <div class="person-details__graphs__item">
+        <div class="person-details__graphs__item__graph">
+          <canvas id="gamesPlayedChart"></canvas>
         </div>
       </div>
+      <div class="person-details__graphs__item">
+        <div class="person-details__graphs__item__graph">
+          <canvas id="lineChart"></canvas>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
@@ -63,43 +73,109 @@ function getGamesPlayedThisSeason() {
 
 Chart.defaults.global.defaultFontColor = '#fff';
 Chart.defaults.global.defaultFontFamily = "'Cabin', sans-serif";
-Chart.defaults.global.defaultFontSize = 15;
+Chart.defaults.global.defaultFontSize = 14;
+var allTimeBg = $('.person-details__graphs__colour--all').css('background-color');
+var allTimeAltBg = $('.person-details__graphs__colour--all-alt').css('background-color');
+var seasonBg = $('.person-details__graphs__colour--season').css('background-color');
+var seasonAltBg = $('.person-details__graphs__colour--season-alt').css('background-color');
+
+
 var data = {
     labels: getGameTypes(),
     datasets: [
         {
             label: "All-time",
-            backgroundColor: "rgba(140,72,159,0.2)",
-            borderColor: "rgba(140,72,159,1)",
-            pointBackgroundColor: "rgba(140,72,159,1)",
+            backgroundColor: allTimeAltBg,
+            borderColor: allTimeBg,
+            pointBackgroundColor: allTimeBg,
             pointBorderColor: "#fff",
             pointHoverBackgroundColor: "#fff",
-            pointHoverBorderColor: "rgba(140,72,159,1)",
+            pointHoverBorderColor: allTimeBg,
             data: getGamesPlayed()
         },
         {
             label: "This season",
-            backgroundColor: "rgba(226,124,255,0.2)",
-            borderColor: "rgba(226,124,255,1)",
-            pointBackgroundColor: "rgba(226,124,255,1)",
+            backgroundColor: seasonAltBg,
+            borderColor: seasonBg,
+            pointBackgroundColor: seasonBg,
             pointBorderColor: "#fff",
             pointHoverBackgroundColor: "#fff",
-            pointHoverBorderColor: "rgba(226,124,255,1)",
+            pointHoverBorderColor: seasonBg,
             data: getGamesPlayedThisSeason()
         }
     ]
 };
-var myRadarChart = new Chart("myChart", {
+var myRadarChart = new Chart("gamesPlayedChart", {
     type: 'radar',
     data: data,
     options: {
+      legend: {
+        display: false,
+      },
       responsive: true,
       scale: {
         ticks: {
           display: false,
-          stepSize: 1
-        }
-      }
+          stepSize: 1,
+        },
+        pointLabels: {
+          fontSize: 14,
+        },
+      },
     }
+});
+
+var labels = [
+  <% @seasons.each do |s| %>
+    '<%= s[:start].strftime("%b") + '-' + s[:finish].strftime("%b %Y") %>',
+  <% end %>
+];
+var points = [
+  <% @seasons.each do |s| %>
+    <%= @person.total_points(s) %>,
+  <% end %>
+];
+var data = {
+    labels: labels,
+    datasets: [
+        {
+            label: "Points scored",
+            fill: false,
+            // lineTension: 0.1,
+            backgroundColor: allTimeAltBg,
+            borderColor: allTimeBg,
+            borderCapStyle: 'butt',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+            pointBorderColor: allTimeBg,
+            pointBackgroundColor: "#fff",
+            pointBorderWidth: 1,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: allTimeBg,
+            pointHoverBorderColor: "#fff",
+            pointHoverBorderWidth: 2,
+            pointRadius: 2,
+            pointHitRadius: 10,
+            data: points,
+            spanGaps: false,
+        }
+    ]
+};
+var myLineChart = new Chart('lineChart', {
+    type: 'line',
+    data: data,
+    options: {
+      legend: {
+        display: false,
+      },
+      scales: {
+        yAxes: [{
+          ticks: {
+            stepSize: 1,
+          }
+        }]
+      }
+    },
 });
 </script>

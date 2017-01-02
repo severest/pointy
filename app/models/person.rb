@@ -41,7 +41,7 @@ class Person < ApplicationRecord
     self.person_games.includes(:game).where(win: true).count
   end
 
-  def total_points(game_type_id, season = nil)
+  def total_points_by_game_type(game_type_id, season = nil)
     if season.nil?
       self.person_games.includes(:game).where('games.game_type_id': game_type_id).sum(:points)
     else
@@ -49,7 +49,15 @@ class Person < ApplicationRecord
     end
   end
 
+  def total_points(season = nil)
+    if season.nil?
+      self.person_games.sum(:points)
+    else
+      self.person_games.includes(:game).where('games.created_at': season[:start]..season[:finish]).sum(:points)
+    end
+  end
+
   def points_per_game(game_type_id, season = nil)
-    self.total_points(game_type_id, season).to_f / self.games_played_by_game_type(game_type_id, season).to_f
+    self.total_points_by_game_type(game_type_id, season).to_f / self.games_played_by_game_type(game_type_id, season).to_f
   end
 end
