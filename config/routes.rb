@@ -9,4 +9,9 @@ Rails.application.routes.draw do
   end
 
   get '/u/:id', to: 'person#show', as: 'person'
+
+  get '/notloggedin', to: 'sessions#new', as: 'login'
+  get '/notallowed', to: 'sessions#denied', as: 'not_allowed'
+  get '/auth/:provider/callback', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
 end

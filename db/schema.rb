@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161127215219) do
+ActiveRecord::Schema.define(version: 20170728000000) do
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
@@ -54,6 +54,19 @@ ActiveRecord::Schema.define(version: 20161127215219) do
     t.integer  "game_id"
     t.index ["game_id"], name: "index_person_games_on_game_id"
     t.index ["person_id"], name: "index_person_games_on_person_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "provider",                   null: false
+    t.string   "uid",                        null: false
+    t.string   "name"
+    t.string   "email"
+    t.boolean  "admin",      default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true
+    t.index ["provider"], name: "index_users_on_provider"
+    t.index ["uid"], name: "index_users_on_uid"
   end
 
 end
