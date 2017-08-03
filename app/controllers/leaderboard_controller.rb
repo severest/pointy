@@ -9,7 +9,12 @@ class LeaderboardController < ApplicationController
       else
         people = Person.includes(person_games: [game: [:game_type]]).where('game_types.name': game_type.name)
       end
-      sorted_people = people.sort_by{ |person| [person.wins(game_type.id, @season), person.points_per_game(game_type.id, @season)] }
+
+      if game_type.reverse_points
+        sorted_people = people.sort_by{ |person| [person.wins(game_type.id, @season), person.points_per_game(game_type.id, @season) * (-1)] }
+      else
+        sorted_people = people.sort_by{ |person| [person.wins(game_type.id, @season), person.points_per_game(game_type.id, @season)] }
+      end
       @leaderboards.push({
           :game => game_type.name,
           :game_type_id => game_type.id,

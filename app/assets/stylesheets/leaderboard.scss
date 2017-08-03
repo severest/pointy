@@ -15,6 +15,7 @@
 .leaderboard__table {
   font-size: 22px;
   width: 100%;
+  border-spacing: 0;
   thead {
     tr {
       border-bottom: 1px solid #ccc;
@@ -29,6 +30,10 @@
   }
   td, th {
     padding: 10px;
+    text-align: center;
+  }
+  td.name {
+    text-align: left;
   }
   a {
     color: inherit;

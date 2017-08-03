@@ -1,0 +1,7 @@
+<script>
+var gameTypes = {
+  <% @game_types.each do |type| %>
+    "<%= type.id %>": <%= type.reverse_points %>,
+  <% end %>
+};
+</script>

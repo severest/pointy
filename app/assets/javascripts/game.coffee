@@ -33,8 +33,9 @@ document.addEventListener("turbolinks:load", ->
       game:
         game_type_id: $('#type').val()
         players: []
+    reversedPoints = gameTypes[game.game.game_type_id]
     winningIndex = 0
-    winningPoints = 0
+    winningPoints = -1000
     for player, index in $('.game-group')
       points = parseInt($(player).find('#points').val().trim(), 10)
       game.game.players.push(
@@ -42,7 +43,10 @@ document.addEventListener("turbolinks:load", ->
         points: points
         winner: false
       )
-      if points > winningPoints
+      if (points > winningPoints or winningPoints < 0) and !reversedPoints
+        winningIndex = index
+        winningPoints = points
+      else if (points < winningPoints or winningPoints < 0) and reversedPoints
         winningIndex = index
         winningPoints = points
     game.game.players[winningIndex].winner = true
