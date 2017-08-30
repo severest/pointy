@@ -11,9 +11,9 @@ class LeaderboardController < ApplicationController
       end
 
       if game_type.reverse_points
-        sorted_people = people.sort_by{ |person| [person.wins(game_type.id, @season), person.points_per_game(game_type.id, @season) * (-1)] }
+        sorted_people = people.sort_by{ |person| [person.win_percentage(game_type.id, @season), person.points_per_game(game_type.id, @season) * (-1)] }
       else
-        sorted_people = people.sort_by{ |person| [person.wins(game_type.id, @season), person.points_per_game(game_type.id, @season)] }
+        sorted_people = people.sort_by{ |person| [person.win_percentage(game_type.id, @season), person.points_per_game(game_type.id, @season)] }
       end
       @leaderboards.push({
           :game => game_type.name,

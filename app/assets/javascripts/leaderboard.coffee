@@ -25,7 +25,7 @@ hideRows = (table) ->
 
 document.addEventListener("turbolinks:load", ->
   options =
-    valueNames: [ 'name', 'games', 'wins', 'ppg' ]
+    valueNames: [ 'name', 'games', 'wins', 'win-perc', 'ppg' ]
 
   $.each($('.leaderboard__table'), (tableIndex, table) ->
     userList = new List("leaderboard__table_#{tableIndex}", options)
