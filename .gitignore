@@ -22,3 +22,5 @@
 
 config/deploy/production.rb
 .DS_Store
+
+coverage
