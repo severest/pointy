@@ -37,7 +37,8 @@ class Person < ApplicationRecord
     end
   end
 
-  def win_percentage(game_type_id, season = nil)
+  def win_percentage(game_type_id, total_games_played_by_others, season = nil)
+    game_threshold = 0.3
     if season.nil?
       wins = self.person_games.includes(:game).where('games.game_type_id': game_type_id, win: true).count
       total_games = self.person_games.includes(:game).where('games.game_type_id': game_type_id).count
@@ -45,6 +46,7 @@ class Person < ApplicationRecord
       wins = self.person_games.includes(:game).where('games.game_type_id': game_type_id, win: true, 'games.created_at': season[:start]..season[:finish]).count
       total_games = self.person_games.includes(:game).where('games.game_type_id': game_type_id, 'games.created_at': season[:start]..season[:finish]).count
     end
+    return 0 if total_games == 0 || total_games.to_f/total_games_played_by_others <= game_threshold
     return wins.to_f / total_games
   end
 

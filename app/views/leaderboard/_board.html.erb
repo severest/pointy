@@ -29,7 +29,7 @@
         <td class="name"><%= link_to person.name, person_path(person) %></td>
         <td class="leaderboard__table__game games"><%= person.games_played_by_game_type(board[:game_type_id], @season) %></td>
         <td class="wins"><%= person.wins(board[:game_type_id], @season) %></td>
-        <td class="win-perc"><%= person.win_percentage(board[:game_type_id], @season).round(2) %></td>
+        <td class="win-perc"><%= person.win_percentage(board[:game_type_id], board[:max_games_played], @season).round(2) %></td>
         <td class="ppg"><%= person.points_per_game(board[:game_type_id], @season).round(2) %></td>
       </tr>
     <% end %>
