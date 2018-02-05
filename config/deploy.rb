@@ -30,7 +30,7 @@ append :linked_files, 'config/database.yml', 'config/secrets.yml', 'config/initi
 append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/system'
 
 # Default value for default_env is {}
-# set :default_env, { path: "/opt/ruby/bin:$PATH" }
+set :default_env, { path: "/home/ultra/.gem/ruby/2.4.0/bin:$PATH" }
 
 # Default value for keep_releases is 5
 # set :keep_releases, 5
