@@ -46,6 +46,11 @@ group :development do
   gem 'listen'
 end
 
+group :test do
+  gem 'capybara'
+  gem 'selenium-webdriver'
+end
+
 gem "codeclimate-test-reporter", group: :test, require: nil
 
 gem 'friendly_id'

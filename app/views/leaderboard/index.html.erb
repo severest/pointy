@@ -8,7 +8,7 @@
     <a href="<%= url_for root_url :params => {season: @season[:finish].advance(days: 1).strftime("%Y-%m-%d")} %>" class="mui-btn mui-btn--accent season-btn">
       <%= fa_icon "chevron-right" %>
     </a>
-    <a href="/?season=all" class="mui-btn mui-btn--accent season-btn">
+    <a href="/?season=all" class="mui-btn mui-btn--accent season-btn js-test-all-time">
       All time
     </a>
   <% else %>

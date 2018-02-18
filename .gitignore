@@ -24,3 +24,5 @@ config/deploy/production.rb
 .DS_Store
 
 coverage
+
+capybara-*.png
