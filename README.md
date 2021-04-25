@@ -1,11 +1,10 @@
 # Pointy
 
-[![Code Climate](https://codeclimate.com/github/severest/pointy/badges/gpa.svg)](https://codeclimate.com/github/severest/pointy)
-[![Build Status](https://travis-ci.org/severest/pointy.svg?branch=master)](https://travis-ci.org/severest/pointy)
+[![Build Status](https://sean.semaphoreci.com/badges/pointy/branches/master.svg?style=shields)](https://sean.semaphoreci.com/projects/pointy)
 
 An app to keep track of points.
 
-Ruby version: 2.2.3. I use [rbenv](https://github.com/rbenv/rbenv)
+Ruby version: 2.7.1. I use [rbenv](https://github.com/rbenv/rbenv)
 
 [Rails Guide](http://guides.rubyonrails.org/getting_started.html)
 
@@ -14,6 +13,6 @@ Ruby version: 2.2.3. I use [rbenv](https://github.com/rbenv/rbenv)
 ```
 gem install bundler
 bundle install
-rake db:migrate
-rails s
+bin/rails db:migrate
+bin/rails s
 ```
