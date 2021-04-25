@@ -1,6 +1,11 @@
 class StatsController < ApplicationController
 
   def fact
+    if Person.count == 0
+      render json: { fact: '' }
+      return
+    end
+
     talking_point_type = rand(3)
     time_range_type = rand(3)
 

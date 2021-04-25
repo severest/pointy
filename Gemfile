@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails'
 # Use sqlite3 as the database for Active Record
-gem 'mysql2'
+# gem 'mysql2'
 # Use Puma as the app server
 gem 'puma'
 # Use SCSS for stylesheets
@@ -34,9 +34,6 @@ gem 'momentjs-rails'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
-  gem 'capistrano'
-  gem 'capistrano-rails'
-  gem 'capistrano3-puma'
   gem 'sqlite3'
 end
 
@@ -50,8 +47,6 @@ group :test do
   gem 'capybara'
   gem 'selenium-webdriver'
 end
-
-gem "codeclimate-test-reporter", group: :test, require: nil
 
 gem 'friendly_id'
 

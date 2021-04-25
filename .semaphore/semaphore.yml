@@ -12,7 +12,7 @@ blocks:
           commands:
             - checkout
             - cache restore
-            - sem-version ruby 2.4.1
+            - sem-version ruby 2.7.1
             - bundle install --deployment --path vendor/bundle
             - 'bin/rails assets:precompile'
             - cache store
@@ -25,16 +25,16 @@ blocks:
         commands:
           - checkout
           - cache restore
-          - sem-version ruby 2.4.1
+          - sem-version ruby 2.7.1
           - bundle install --deployment --path vendor/bundle
-          - 'bundle exec rake db:test:prepare'
+          - 'bin/rails db:test:prepare'
       env_vars:
         - name: RAILS_ENV
           value: test
       jobs:
         - name: Rails unit tests
           commands:
-            - bundle exec rake
+            - bin/rails test
         - name: Rails selenium tests
           commands:
-            - 'bundle exec rails test:system'
+            - 'bin/rails test:system'
